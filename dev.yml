@@ -1,0 +1,46 @@
+name: standup-slackbot
+display_name: standup_slackbot
+up:
+  - homebrew:
+    - openssl
+  - ruby:
+      version: 2.3.1
+  - railgun
+  - bundler
+
+commands:
+  console:
+    syntax: ""
+    desc:   'start a rails console'
+    run:    bin/rails console
+  server:
+    syntax: ""
+    desc:   'start a rails server'
+    run:    bin/rails server -b 192.168.64.1 -p 8000
+  test:
+    syntax:
+      argument: file
+      optional: args...
+    desc:   'run a single test file'
+    run:    bundle exec rspec
+  migrate:
+    syntax: ""
+    desc: 'migrate your db'
+    run: bin/rails db:migrate
+
+railgun:
+  image: dev:railgun-common-services-0.2.x
+  services:
+    redis: 6379
+    mysql: 3306
+    nginx: 80
+  ip_address: 192.168.64.217 # chosen arbitrarily
+  memory: 2G
+  cores: 2
+  disk: 2G
+
+open:
+  "standup-slackbot": "http://192.168.64.1:8000"
+
+packages:
+  - git@github.com:Shopify/dev-shopify.git
