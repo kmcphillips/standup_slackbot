@@ -21,6 +21,10 @@ gem 'paranoia'
 gem 'acts_as_permalink'
 gem 'kaminari'
 
+gem 'slack-ruby-bot'
+gem 'celluloid-io'
+# See also https://github.com/dblock/slack-bot-on-rails/commit/a93877ae77d0fa1935b1c847af61dab346a46b78
+
 group :development, :test do
   # gem 'byebug', platform: :mri
   gem 'pry-rails'
