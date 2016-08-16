@@ -1,6 +1,8 @@
 class Standup < ApplicationRecord
   serialize :days, Array
 
+  has_many :users, through: :participations
+
   validates :name, presence: true
   validates :hour, inclusion: { in: 0..23, message: "is not a valid time" }
   validates :minute, inclusion: { in: 0..59, message: "is not a valid time" }
