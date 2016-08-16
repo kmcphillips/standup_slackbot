@@ -17,7 +17,7 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-gem 'paranoia'
+gem 'paranoia', '~> 2.2.0.pre'
 gem 'acts_as_permalink'
 gem 'kaminari'
 
@@ -25,6 +25,8 @@ group :development, :test do
   # gem 'byebug', platform: :mri
   gem 'pry-rails'
   gem 'rspec-rails'
+  gem 'factory_girl_rails'
+  gem 'rspec-collection_matchers'
 end
 
 group :development do
