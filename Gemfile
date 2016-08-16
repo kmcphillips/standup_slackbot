@@ -26,6 +26,7 @@ group :development, :test do
   gem 'pry-rails'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
+  gem 'rspec-collection_matchers'
 end
 
 group :development do
