@@ -2,11 +2,17 @@ class Standup < ApplicationRecord
   serialize :days, Array
 
   has_many :users, through: :participations
+  has_many :questions
+
+  MAX_QUESTIONS = 20
 
   validates :name, presence: true
   validates :hour, inclusion: { in: 0..23, message: "is not a valid time" }
   validates :minute, inclusion: { in: 0..59, message: "is not a valid time" }
+  validates :questions, length: { minimum: 1, maximum: MAX_QUESTIONS, message: "must not be empty" }
   validate :validate_days
+
+  validates_associated :questions
 
   def timezone
     "EST"

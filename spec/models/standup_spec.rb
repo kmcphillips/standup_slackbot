@@ -54,6 +54,18 @@ RSpec.describe Standup, type: :model do
     it_behaves_like "invalid week days", days: [8]
     it_behaves_like "invalid week days", days: [0]
     it_behaves_like "invalid week days", days: [9, 999999]
+
+    it "has many questions" do
+      subject.questions = []
+      expect(subject).to have(1).error_on(:questions)
+      expect(subject.errors_on(:questions)).to include("must not be empty")
+    end
+
+    it "validates associates for questions" do
+      subject.questions = [FactoryGirl.build(:question, body: nil)]
+      expect(subject).to have(1).error_on(:questions)
+      expect(subject.errors_on(:questions)).to include("is invalid")
+    end
   end
 
   describe "#timezone" do
